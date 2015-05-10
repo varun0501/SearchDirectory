@@ -1,0 +1,82 @@
+
+<section>
+    <a href="#/list" class="btn btn-info btn-sm pull-right" style="background-color: #1aa3a3; margin-right: 50px;">
+        <span class="glyphicon glyphicon-pencil"></span> Logout
+    </a>
+    <!--<div class="search">-->
+        <!--<h1>Employee Directory</h1>-->
+        <!--<label>search: </label>-->
+        <!--<input ng-model="query" placeholder="Search for artists" autofocus>-->
+
+    <!--</div>-->
+    <!--<table>-->
+        <!--<tbody>-->
+        <!--<tr>-->
+            <!--<td>Enter Name: </td><td>-->
+            <!--<input type="text" ng-model="m_name"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>Enter Title: </td><td>-->
+            <!--<input type="text" ng-model="m_title"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>Enter Location: </td><td>-->
+            <!--<input type="text" ng-model="m_location"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>Enter Email: </td><td>-->
+            <!--<input type="text" ng-model="m_email"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>Enter Phone: </td><td>-->
+            <!--<input type="text" ng-model="m_phone"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td><button ng-click="saveEmployee()">Save</button></td>-->
+            <!--<td><button ng-click="updateEmployee(m_name,m_title,m_location,m_email,m_phone)">Update</button></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+    <section id="searchForm">
+        <h1>Employee Directory</h1>
+        <fieldset>
+            <input ng-model="m_name" placeholder="Name" autofocus>
+            <input ng-model="m_title" placeholder="Job Title">
+            <input ng-model="m_location" placeholder="Location">
+            <input ng-model="m_email" placeholder="Email">
+            <input ng-model="m_phone" placeholder="Phone Number">
+            <td><button class="btn btn-info btn-md" ng-click="saveEmployee()"
+                        style="background-color: #1aa3a3;margin-top: 25px;">Save</button></td>
+            <td><button class="btn btn-info btn-md" style="background-color: #1aa3a3; margin-top: 25px;"
+                        ng-click="updateEmployee(m_name,m_title,m_location,m_email,m_phone)">Update</button></td>
+        </fieldset>
+    </section>
+    <table class="emptable">
+        <thead>
+        <tr>
+            <th width="16%"><b>Name</b></th>
+            <th width="16%">Job Title</th>
+            <th width="16%">Location</th>
+            <th width="16%">Email</th>
+            <th width="16%">Phone Number</th>
+            <th width="20%">Manage</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="employee in employees | filter: query">
+            <td width="16%">{{employee.name}}</td>
+            <td width="16%">{{employee.title}}</td>
+            <td width="16%">{{employee.location}}</td>
+            <td width="16%">{{employee.email}}</td>
+            <td width="16%">{{employee.phone}}</td>
+            <td width="20%"><a class="btn btn-info btn-sm" style="background-color: #004874;"
+                   ng-click="editEmployee(employee,employees.indexOf(employee))">
+                    <span class="glyphicon glyphicon-edit"></span> Edit
+            </a>
+            <a class="btn btn-info btn-sm" style="background-color: #004874;"
+                   ng-click="deleteEmployee(employees.indexOf(employee))">
+                <span class="glyphicon glyphicon-remove"></span> Delete
+            </a>
+            </td>
+        </tr>
+    </table>
+</section>

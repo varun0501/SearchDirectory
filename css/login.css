@@ -3,8 +3,6 @@
 #loginForm {
 	background-color: #fff;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;		
 	margin: 50px auto;
 	width: 300px;
 }
@@ -20,28 +18,8 @@
 }
 
 #loginForm fieldset {
-	border: none;
 	padding: 20px;
-	position: relative;
 }
-
-#loginForm fieldset:before {
-	background-color: #fff;
-	content: "";
-	display: block;
-	height: 8px;
-	left: 146px;
-	position: absolute;
-	top: -4px;
-	transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	-webkit-transform: rotate(45deg); 
-	width: 8px;
-	z-index: 1;	
-}
-
 
 #loginForm fieldset input {
 	font-family: Arial, Helvetica, sans-serif;
@@ -49,11 +27,12 @@
 	outline: none;
 }
 
-#loginForm fieldset input[type="email"] {
+#loginForm fieldset input[type="text"] {
 	border: 1px solid #dcdcdc;
 	border-radius: 3px 3px 0px 0px;
 	padding: 12px 10px;
-	width: 238px;
+	width: 100%;
+	outline: none;
 }
 
 #loginForm fieldset input[type="password"] {
@@ -61,46 +40,26 @@
 	border-top: none;
 	border-radius: 0px 0px 3px 3px;
 	padding: 12px 10px;
-	width: 238px;
+	width: 100%;
+	outline: none;
 }
 
 #loginForm fieldset #login {
 	background-color: #1dabb8;
-	border: none;
 	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
 	color: #fff;
 	cursor: pointer;
 	float: right;
 	font-weight: bold;
 	margin-top: 20px;
 	padding: 12px 20px;
-	-webkit-appearance:none;
-}
-
-#loginForm fieldset form input[type="submit"]:hover {
-	background-color: #198d98;
-}
-
-#loginForm fieldset span:before {
-	background-color: #e5e5e5;
-	border-radius: 50%;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
-	content: "?";
-	display: inline-block;
-	height: 20px;
-	line-height: 20px;
-	margin-right: 10px;
-	text-align: center;
-	width: 20px;
 }
 
 #loginForm fieldset span {
 	font-size: 12px;
 	float: left;
 	margin-top: 32px;
+	cursor: pointer;
 }
 
 #loginForm fieldset span a{

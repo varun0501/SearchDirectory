@@ -1,16 +1,12 @@
+//Initializing Angular app with dependencies
 var myApp = angular.module('myApp', [
     'ngRoute',
     'employeeControllers',
     'firebase'
 ]);
 
-myApp.filter('offset', function() {
-    return function(input, start) {
-        start = parseInt(start, 10);
-        return input.slice(start);
-    };
-});
 
+//Routing mechanism
 myApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/list', {

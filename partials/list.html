@@ -1,7 +1,9 @@
-<a href="#/login" class="btn btn-info btn-sm pull-right"
-   style="background-color: #1aa3a3; margin-right: 50px;">
+<!--This is welcome page of the application-->
+<!--This is for displaying button in top right corner for navigating between templates-->
+<a href="#/login" class="btn btn-info btn-sm pull-right navLinks">
     <span class="glyphicon glyphicon-pencil"></span> Manage Employees
 </a>
+<!--This section is for displaying set of search fields for user to search any employee-->
 <section id="searchForm">
     <h1>Employee Directory</h1>
     <fieldset>
@@ -9,10 +11,12 @@
         <input ng-model="queryTitle" placeholder="Job Title">
         <input ng-model="queryLocation" placeholder="Location">
         <input ng-model="queryEmail" placeholder="Email">
-        <input ng-model="queryNumber" placeholder="Phone Number">
+        <input ng-model="queryNumber" placeholder="Phone Number" type="number">
     </fieldset>
 </section>
-<table id="empTable" class="emptable">
+<!--This is for displaying results in a table. Sorting is implemented on all fields of table.
+I used AngularJS expressions for binding the data to table columns-->
+<table id="empTable" class="emptable" ng-show="queryName || queryNumber || queryTitle || queryLocation || queryEmail">
     <thead>
     <tr>
         <th width="20%"><a href="" ng-click="predicate = 'name'; reverse = !reverse">Name</a></th>
@@ -25,9 +29,7 @@
     <tbody>
     <tr ng-repeat="employee in employees | filter: {name: queryName,
                         phone: queryNumber, title: queryTitle, location: queryLocation, email: queryEmail} |
-                        orderBy:predicate:reverse |
-                        offset: currentPage*itemsPerPage |
-                        limitTo: itemsPerPage">
+                        orderBy:predicate:reverse">
         <td width="20%">{{employee.name}}</td>
         <td width="20%">{{employee.title}}</td>
         <td width="20%">{{employee.location}}</td>
@@ -36,21 +38,3 @@
     </tr>
     </tbody>
 </table>
-
-<div style="text-align: center;">
-    <ul class="pagination">
-        <li ng-class="prevPageDisabled()">
-            <a ng-click="prevPage()">« Prev</a>
-        </li>
-        <li ng-repeat="n in range()"
-            ng-class="{active: n == currentPage}"
-            ng-click="setPage(n)">
-            <a>{{n+1}}</a>
-        </li>
-        <li ng-class="nextPageDisabled()">
-            <a ng-click="nextPage()">Next »</a>
-        </li>
-    </ul>
-</div>
-
-

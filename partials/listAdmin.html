@@ -1,68 +1,42 @@
-
+<!--This template is for HR employees to Add, Update, Delete employees-->
 <section>
-    <a href="#/list" class="btn btn-info btn-sm pull-right" style="background-color: #1aa3a3; margin-right: 50px;">
-        <span class="glyphicon glyphicon-pencil"></span> Logout
-    </a>
-    <!--<div class="search">-->
-        <!--<h1>Employee Directory</h1>-->
-        <!--<label>search: </label>-->
-        <!--<input ng-model="query" placeholder="Search for artists" autofocus>-->
-
-    <!--</div>-->
-    <!--<table>-->
-        <!--<tbody>-->
-        <!--<tr>-->
-            <!--<td>Enter Name: </td><td>-->
-            <!--<input type="text" ng-model="m_name"/></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>Enter Title: </td><td>-->
-            <!--<input type="text" ng-model="m_title"/></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>Enter Location: </td><td>-->
-            <!--<input type="text" ng-model="m_location"/></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>Enter Email: </td><td>-->
-            <!--<input type="text" ng-model="m_email"/></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>Enter Phone: </td><td>-->
-            <!--<input type="text" ng-model="m_phone"/></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td><button ng-click="saveEmployee()">Save</button></td>-->
-            <!--<td><button ng-click="updateEmployee(m_name,m_title,m_location,m_email,m_phone)">Update</button></td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-    <!--</table>-->
+    <!--This is for displaying button in top right corner for navigating between templates-->
+    <a href="#/list" class="btn btn-info btn-sm pull-right navLinks">Logout</a>
+    <!--This section is for displaying set of fields for letting HR employees to manage employees data-->
     <section id="searchForm">
         <h1>Employee Directory</h1>
         <fieldset>
-            <input ng-model="m_name" placeholder="Name" autofocus>
+            <input id="searchBox" type="search" ng-model="query" placeholder="Search for employee" autofocus>
+            <input id="searchName" ng-model="m_name" placeholder="Name" autofocus>
+            <span id="errName" class="alert" aria-live="polite"></span>
             <input ng-model="m_title" placeholder="Job Title">
             <input ng-model="m_location" placeholder="Location">
-            <input ng-model="m_email" placeholder="Email">
-            <input ng-model="m_phone" placeholder="Phone Number">
-            <td><button class="btn btn-info btn-md" ng-click="saveEmployee()"
-                        style="background-color: #1aa3a3;margin-top: 25px;">Save</button></td>
-            <td><button class="btn btn-info btn-md" style="background-color: #1aa3a3; margin-top: 25px;"
-                        ng-click="updateEmployee(m_name,m_title,m_location,m_email,m_phone)">Update</button></td>
+            <input id="searchEmail" ng-model="m_email" placeholder="Email">
+            <span class="alert" id="errEmail" aria-live="polite"></span>
+            <input id="searchPhone" ng-model="m_phone" placeholder="Phone Number">
+            <span class="alert" id="errPhone" aria-live="polite"></span>
+            <button class="btn btn-info btn-md" ng-click="saveEmployee()"
+                        style="background-color: #1aa3a3;margin-top: 25px;">Add</button>
+            <button class="btn btn-info btn-md" style="background-color: #1aa3a3; margin-top: 25px;"
+                        ng-click="updateEmployee(m_name,m_title,m_location,m_email,m_phone)">Update</button>
         </fieldset>
     </section>
+    <!--This is for displaying results in a table. Sorting is implemented on all fields of table.
+    I used AngularJS expressions for binding the data to table columns-->
     <table class="emptable">
         <thead>
         <tr>
-            <th width="16%"><b>Name</b></th>
-            <th width="16%">Job Title</th>
-            <th width="16%">Location</th>
-            <th width="16%">Email</th>
-            <th width="16%">Phone Number</th>
+
+            <th width="16%"><a href="" ng-click="predicate = 'name'; reverse = !reverse">Name</a></th>
+            <th width="16%"><a href="" ng-click="predicate = 'title'; reverse = !reverse">Job Title</a></th>
+            <th width="16%"><a href="" ng-click="predicate = 'location'; reverse = !reverse">Location</a></th>
+            <th width="16%"><a href="" ng-click="predicate = 'email'; reverse = !reverse">Email</a></th>
+            <th width="16%"><a href="" ng-click="predicate = 'phone'; reverse = !reverse">Phone Number</a></th>
             <th width="20%">Manage</th>
         </tr>
         </thead>
-        <tr ng-repeat="employee in employees | filter: query">
+        <tr ng-repeat="employee in employees | filter: query |
+            orderBy:predicate:reverse">
             <td width="16%">{{employee.name}}</td>
             <td width="16%">{{employee.title}}</td>
             <td width="16%">{{employee.location}}</td>
